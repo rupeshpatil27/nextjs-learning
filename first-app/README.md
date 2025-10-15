@@ -4,6 +4,7 @@ This is a basic Next.js project to explore routing and nested routes.
 
 ## 📁 Project Structure
 
+```text
 app/
 ├── page.js                    --> route: "/"
 ├── about/
@@ -14,3 +15,4 @@ app/
 │       └── page.jsx           --> route: "/about/second"
 └── contact/
     └── page.jsx               --> route: "/contact"
+``` 
