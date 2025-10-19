@@ -6,3 +6,7 @@ Created as part of my learning journey with Next.js, this project focuses on mas
 - ✅ Nested Routes
 - ✅ Dynamic Routing
 - ✅ Nested Dynamic Routes
+- ✅ Catch-all Segments
+- ✅ Layouts  
+- ✅ Nested Layouts  
+- ✅ Route Groups 
