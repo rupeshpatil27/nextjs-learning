@@ -1,8 +1,17 @@
+import Link from "next/link";
+
+export const metadata={
+  title:"Product Page",
+  description:"Production details"
+}
+
 export default function Products() {
   return (
-    <>
-      <span className="text-2xl">Product 1</span>
-      <span className="text-2xl">Product 2</span>
-    </>
+  
+      <>
+        <Link href={"products/1?category=phone&color=red"}>Product 1</Link>
+        <Link href={"products/2"}>Product 2</Link>
+      </>
+   
   );
 }
