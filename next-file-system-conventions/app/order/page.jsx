@@ -5,13 +5,23 @@ export const metadata = {
   description: "Order details",
 };
 
-export default async function Orders() {
+function getRandomInt(num) {
+  return Math.floor(Math.random() * num);
+}
 
-  await new Promise(resolve=>{
-    setTimeout(()=>{
-      resolve("delay")
-    },2000)
-  })
+export default async function Orders() {
+  await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("delay");
+    }, 2000);
+  });
+
+  const random = getRandomInt(2);
+
+  if (random === 1) {
+    throw new Error("Error !.. - in Order Page");
+  }
+
   return (
     <>
       <div className="main-container">
