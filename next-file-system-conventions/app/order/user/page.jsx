@@ -5,8 +5,8 @@ export const metadata = {
 
 export default function User() {
   return (
-    <div className="main-container">
-      <h1 className="text-4xl">User Page</h1>
-    </div>
+    <>
+      <h1 className="text-4xl text-center">User Page</h1>
+    </>
   );
 }

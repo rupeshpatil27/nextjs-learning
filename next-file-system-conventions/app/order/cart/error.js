@@ -13,10 +13,13 @@ export default function error({ error, reset }) {
   };
 
   return (
-    <div>
-      <p>{error.message}</p>
+    <div className="flex flex-col items-center justify-center p-6 bg-red-100 rounded-lg shadow-md space-y-4">
+      <p className="text-lg font-semibold text-gray-800">
+        Something went wrong on the cart page
+      </p>
+      <p className="text-sm text-gray-600">{error.message}</p>
       <button
-        className="bg-gray-500 text-white px-2 py-1 rounded-md"
+        className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors duration-200"
         onClick={() => reload()}
       >
         Try Again
