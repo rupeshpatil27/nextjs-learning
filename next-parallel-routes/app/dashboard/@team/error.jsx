@@ -2,7 +2,7 @@
 
 export default function TeamErrorPage({ error, reset }) {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50">
+    <div className="flex items-center justify-center bg-gray-50">
       <div className="bg-white p-6 rounded-lg shadow-lg text-center max-w-lg">
         <h2 className="text-3xl font-semibold text-red-600 mb-4">Oops! Something went wrong.</h2>
         <p className="text-lg text-gray-700 mb-4">
