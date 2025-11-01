@@ -4,14 +4,18 @@ This project demonstrates the use of intercepting routes in Next.js, where we us
 
 ## Project Structure
 
-```plaintext
-/app
-  /about
-    /page.jsx                    <-- Main about page
-    /( .. )contact/page.jsx      <-- Matches the 'contact' route one level above
-    /( . )store/page.jsx         <-- Matches 'store' route on the same level as '/about'
-    /store/page.jsx              <-- Main store page
-  /contact
-    /page.jsx                    <-- Main contact page
+```text
+
+app/
+├── (pages)/               
+│   ├── one-up/
+│   ├── root-level/
+│   ├── same-level/
+│   └── two-up/level-two/
+├── layout.tsx             # Root layout
+├── page.tsx               # Main application home page
+├── target-page/
+│   └── page.tsx           # The *actual* target destination page
+
 
 ```
