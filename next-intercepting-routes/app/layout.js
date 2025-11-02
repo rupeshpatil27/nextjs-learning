@@ -23,16 +23,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header className="p-4 bg-white shadow-md">
-         <nav className="flex space-x-4">
-            <Link href="/" className="text-blue-600 hover:underline">Home</Link>
-            <Link href="/same-level" className="text-blue-600 hover:underline">Same Level Demo</Link>
-            <Link href="/one-up" className="text-blue-600 hover:underline">One Up Demo</Link>
-            <Link href="/two-up/level-two" className="text-blue-600 hover:underline">Two Up Demo</Link>
-            <Link href="/root-level" className="text-blue-600 hover:underline">Root Level Demo</Link>
-          </nav>
-        </header>
-        <main className="p-8">{children}</main>
+        {children}
       </body>
     </html>
   );
