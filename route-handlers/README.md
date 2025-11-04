@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next js Route Handlers
 
-## Getting Started
+This Project is dedicated to learning and demonstrating Next.js 15+ Route Handlers within the `app` router. The examples cover basic to advanced concepts, all designed to be tested using a tool like Postman.
 
-First, run the development server:
+## Testing with Postman
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Use the following endpoints to test the various Route Handler concepts:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 1. Basic Users API (CRUD)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **GET List:** `http://localhost:3000/api/users`
+- **POST Create:** `http://localhost:3000/api/users` (Body: `{ "name": "Test User", "role": "admin" }`)
+- **GET Single:** `http://localhost:3000/api/users/1`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2. URL Query Parameters
 
-## Learn More
+- **GET:** `http://localhost:3000/api/url-params?name=John&sort=desc`
 
-To learn more about Next.js, take a look at the following resources:
+### 3. Headers in Route Handlers
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **GET Read Request Headers:** `http://localhost:3000/api/headers-example/request`
+  - _Test:_ Add custom headers in Postman (e.g., `X-Custom-Header: TestValue`) to see them in the response.
+- **GET Set Response Headers:** `http://localhost:3000/api/headers-example/response`
+  - _Test:_ Check the "Headers" tab in the Postman _response pane_ for `X-Generated-By`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 4. Cookies in Route Handlers
 
-## Deploy on Vercel
+- **GET:** `http://localhost:3000/api/cookies-example`
+  - _Test:_ Use Postman's "Cookies" manager to add a `theme` cookie. Run the request twice; the `last_visit` timestamp updates on the second try.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 5. Redirects in Route Handlers
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **GET:** to `http://localhost:3000/api/redirect-example/v1`
+- This V1 API endpoint tells Postman to immediately go to the V2 endpoint (`/api/redirect-example/v2`) and return that response instead. This handles API version upgrades seamlessly.
+
+### 6. Caching in Route Handlers
+
+- **GET:** `http://localhost:3000/api/advanced/caching-example`
+  - _Note:_ Caching only works in **production mode** (`npm run build` then `npm run start`). The `timestamp` updates based on the `revalidate` setting.
