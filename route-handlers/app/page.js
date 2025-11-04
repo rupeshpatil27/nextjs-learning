@@ -12,6 +12,13 @@ export default function HomePage() {
         <li><code className="bg-gray-200 p-1 rounded">GET/POST /api/users</code>: Basic CRUD operations (List all, Create new).</li>
         <li><code className="bg-gray-200 p-1 rounded">GET/PUT/DELETE /api/users/[id]</code>: Single user operations.</li>
         <li><code className="bg-gray-200 p-1 rounded">GET /api/url-params?name=John</code>: Handles URL Query Parameters.</li>
+        <li><code className="bg-gray-200 p-1 rounded">GET /api/headers-example/request</code>: Reading incoming request headers.</li>
+        <li><code className="bg-gray-200 p-1 rounded">GET /api/headers-example/response</code>: Setting outgoing response headers.</li>
+        <li><code className="bg-gray-200 p-1 rounded">GET /api/cookies-example</code>: Reading incoming cookies & setting outgoing cookies.</li>
+        <li>
+            <code className="bg-gray-200 p-1 rounded">GET /api/redirect-example/v1</code>: Hitting V1 automatically redirects you to the V2 endpoint.
+        </li>
+        <li><code className="bg-gray-200 p-1 rounded">GET /api/caching-example</code>: Shows caching/revalidation.</li>
       </ul>
     </div>
   );
