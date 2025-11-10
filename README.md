@@ -16,7 +16,7 @@ The repository is organized into several self-explanatory project folders:
 | [`next-intercepting-routes`](./next-intercepting-routes)     | Examples of using intercepting routes to create complex UI patterns, like modals, without full page reloads. |
 | [`next-error-handling`](./next-error-handling)          | Demonstrations of implementing robust error boundaries and handling errors across different application scopes. |
 | [`route-handlers`](./route-handlers)               | Examples of creating API endpoints using Route Handlers (GET, POST, etc.) and managing requests.         |
-| [`rsc-vs-client-components`](./rsc-vs-client-components)               | React Server Components (RSC) with Client Components.         |
+| [`rsc-vs-client-components`](./rsc-vs-client-components)               | A practical demo of React Server Components (RSC) vs Client Components (CC).         |
 
 
 # ✅ Concepts Covered
@@ -75,6 +75,14 @@ This section explores creating API endpoints using the `app/api` directory struc
 - **URL Query Parameters**: Reading data from the request URL.
 - **Request Management**: Demonstrates how to handle headers, cookies, redirects, and caching options within server-side handlers.
 - **Next.js 16 Proxy (formerly Middleware):** This section includes examples using the new `proxy.ts` (or `.js`) file located at the project root. We demonstrate advanced request handling, proxying internal API calls, and implementing custom redirects/rewrites.
+
+## 🔄 React Server Components (RSC) vs. Client Components (rsc-vs-client-components)
+
+This section covers the fundamental differences between code running on the server versus the browser:
+
+*   **Server Components (RSC):** Ideal for data fetching, backend logic, reduced bundle sizes, and initial page load performance. They run only on the server.
+*   **Client Components (CC):** Essential for interactivity, event listeners, managing state using hooks (`useState`, `useEffect`), and browser-specific APIs. They are bundled and executed in the user's browser.
+*   **The `'use client'` Directive:** The specific "network boundary" marker that tells Next.js and React where the client-side module graph begins.
 
 
 ## 🚀 Getting Started
