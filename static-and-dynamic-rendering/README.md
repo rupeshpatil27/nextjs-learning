@@ -22,11 +22,11 @@ static-and-dynamic-rendering/
 1.  **Static Rendering**
     *   **Default Behavior:** Next.js uses static rendering by default. Your pages are pre-built into HTML files when you run `npm run build`.
     *   **Caching:** The resulting HTML is cached and reused for every user request until the next build.
-    *   **Example Page:** [`/static-page`](http://localhost:3000/static-page)
+    *   **Example Page:** `/static-page`
 
 2.  **Dynamic Rendering (Dynamic Pages)**
     *   **Request Time:** Pages are rendered fresh for each user request.
     *   **Enabling Dynamic Mode:** This happens automatically when you use dynamic functions (`cookies()`, `headers()`, `searchParams`) or explicitly set `export const dynamic = 'force-dynamic'`.
     *   **Examples Pages:**
-        *   [`/dynamic-page-a`](http://localhost:3000/dynamic-page-a) (Uses `cookies()`)
-        *   [`/dynamic-page-b`](http://localhost:3000/dynamic-page-b) (Uses `export const dynamic`)
+        *   `/dynamic-page-a` (Uses `cookies()`)
+        *   `/dynamic-page-b` (Uses `export const dynamic`)

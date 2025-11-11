@@ -17,6 +17,7 @@ The repository is organized into several self-explanatory project folders:
 | [`next-error-handling`](./next-error-handling)          | Demonstrations of implementing robust error boundaries and handling errors across different application scopes. |
 | [`route-handlers`](./route-handlers)               | Examples of creating API endpoints using Route Handlers (GET, POST, etc.) and managing requests.         |
 | [`rsc-vs-client-components`](./rsc-vs-client-components)               | A practical demo of React Server Components (RSC) vs Client Components (CC).         |
+| [`static-and-dynamic-rendering`](./static-and-dynamic-rendering)               | Demonstrations of Static Rendering and Dynamic Rendering.         |
 
 
 # ✅ Concepts Covered
@@ -83,6 +84,25 @@ This section covers the fundamental differences between code running on the serv
 *   **Server Components (RSC):** Ideal for data fetching, backend logic, reduced bundle sizes, and initial page load performance. They run only on the server.
 *   **Client Components (CC):** Essential for interactivity, event listeners, managing state using hooks (`useState`, `useEffect`), and browser-specific APIs. They are bundled and executed in the user's browser.
 *   **The `'use client'` Directive:** The specific "network boundary" marker that tells Next.js and React where the client-side module graph begins.
+
+
+## 🏗️ Static And Dynamic Rendering (static-and-dynamic-rendering)
+
+This module clarifies how Next.js determines when and where your page HTML is generated:
+
+### 1. Static Rendering
+
+*   **Default Behavior:** In Next.js, static rendering is the default strategy for Server Components. Page HTML is generated once during the application's build process.
+*   **Caching:** The resulting HTML is efficiently cached and served instantly for all subsequent user requests.
+*   **Example Page:** Demonstrations can be found in the project's `/static-page` route.
+
+### 2. Dynamic Rendering (Dynamic Pages)
+
+*   **Request Time:** Pages are generated dynamically on the server for every individual request made by a user.
+*   **Enabling Dynamic Mode:** This mode is automatically enabled when a component utilizes dynamic server functions (such as `cookies()`, `headers()`, or `searchParams`) or when explicitly configured using `export const dynamic = 'force-dynamic'`.
+*   **Examples Pages:**
+    *   `/dynamic-page-a`: Demonstrates automatic dynamic rendering enabled via `cookies()`.
+    *   `/dynamic-page-b`: Demonstrates explicit dynamic rendering using the `dynamic` export option.
 
 
 ## 🚀 Getting Started
