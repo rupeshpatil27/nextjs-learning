@@ -24,3 +24,15 @@ This example simulates a product listing where we have a known, fixed list of pr
 3. View a product detail page (IDs 1, 2, or 3) to see a statically generated page.
 4. Test the 404 behavior by visiting a non-existent product ID, e.g.:
    [http://localhost:3000/products/99](http://localhost:3000/products/99)
+
+
+   ## 📂 File Structure
+
+   ```text
+app/
+├── page.js                     # Entry point for the demo
+└── products/
+    ├── page.js                 # Lists the products
+    └── [productId]/
+        └── page.js             # The dynamic page with generateStaticParams & dynamicParams log
+   ```
