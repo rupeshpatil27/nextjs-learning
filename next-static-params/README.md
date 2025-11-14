@@ -20,6 +20,12 @@ A route segment config option that determines the behavior of visits to dynamic 
 
 This example simulates a product listing where we have a known, fixed list of products that can be pre-rendered for maximum speed.
 
+### 2. Streaming with Explicit `<Suspense>`
+
+This concept demonstrates how Next.js can send HTML to the client in chunks. This allows the user to see the page structure and static content immediately while slow-loading components are replaced by a fallback UI.
+
+The core mechanism is wrapping a Server Component that performs a slow data fetch (using `await`) with the React **`<Suspense>`** component.
+
 ### 🚀 How to Run the Demo
 
 1. Navigate to the entry page in your browser:  
