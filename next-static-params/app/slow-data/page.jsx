@@ -1,5 +1,3 @@
-// app/slow-data/page.js
-
 import React, { Suspense } from 'react';
 import SlowComponent from './SlowComponent';
 
