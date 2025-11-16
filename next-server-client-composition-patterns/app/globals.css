@@ -1,3 +1,4 @@
+/* Import Tailwind base, components, and utilities */
 @import "tailwindcss";
 
 :root {
@@ -12,6 +13,15 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Apply your custom light mode variables */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Use prefers-color-scheme for dark mode on systems that support it */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -19,8 +29,13 @@
   }
 }
 
-body {
-  background: var(--background);
+/* Tailwind dark mode customizations */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+.dark body {
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }

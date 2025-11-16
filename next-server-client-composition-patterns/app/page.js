@@ -1,4 +1,5 @@
 import SlickCarouselWrapper from "./components/SlickCarouselWrapper";
+import ThemeToggle from "./components/ThemeToggle";
 import { getSecretData } from "./lib/server-only-api";
 
 export default async function Home() {
@@ -8,7 +9,7 @@ export default async function Home() {
     <main className="container mx-auto p-8 max-w-4xl space-y-12 dark:bg-gray-900 min-h-screen text-gray-800 dark:text-gray-100 transition-colors">
       <div className="flex justify-between items-center pb-8 border-b dark:border-gray-700">
         <h1 className="text-4xl font-extrabold">Next.js Server And Client Composition Patterns</h1>
-        {/* <ThemeToggle /> */}
+        <ThemeToggle />
       </div>
       <p className="text-lg text-gray-600 dark:text-gray-400">
         This application demonstrates key concepts of server and client component composition in the Next.js.
@@ -44,6 +45,9 @@ export default async function Home() {
           <h3 className="text-xl font-bold">Context Provider (Server-side perspective)</h3>
           <p className="text-gray-700 dark:text-gray-300">
             Server Components cannot directly use React `Context`. Instead, a client-side provider wraps the application in the `layout.tsx`, and data needed server-side is passed down via props.
+          </p>
+          <p className="text-gray-700 dark:text-gray-300 mt-5">
+            The `ThemeToggle` is a client component that needs access to the current theme state. Because the `Context` provider is also a client component, they can interact seamlessly. From the server's perspective, this means the server doesn't manage the theme state; it only renders the `ThemeToggle` component, relying on the client to handle all interactive theme logic.
           </p>
         </div>
       </section>
