@@ -20,6 +20,9 @@ This repository focuses on practical examples of the core architecture of the Ne
 
 *   **Client Component Placement**: Highlights the best practice of placing interactive client components at the "leaves" of your component tree. This allows most of your application to be Server Components, minimizing the client-side JavaScript bundle and improving performance.
 
+### Interleaving Server & Client Components
+
+*   **Passing Server Components as `children` to Client Components**: This advanced pattern demonstrates how to compose an interactive client boundary around static, pre-rendered server content. The `app/page.js` file passes the `ServerDataDisplay` (Server Component) as the `children` prop to the `InteractiveWrapper` (Client Component). The server content is fully rendered to HTML before the client component hydrates, optimizing performance while retaining interactivity in the wrapper.
 
 ##  📂 Project Structure
 
