@@ -14,3 +14,11 @@ export async function getSecretData() {
     source: `Fetched using API key: ${secretKey.slice(0, 5)}...`
   };
 }
+
+// New utility function for the interleaving example
+export async function getServerData() {
+    return {
+        message: "This data was securely fetched on the server.",
+        timestamp: new Date().toISOString()
+    };
+}

@@ -1,4 +1,6 @@
 import ClientInteractive from "./components/ClientInteractive";
+import InteractiveWrapper from "./components/InteractiveWrapper";
+import ServerDataDisplay from "./components/ServerDataDisplay";
 import SlickCarouselWrapper from "./components/SlickCarouselWrapper";
 import ThemeToggle from "./components/ThemeToggle";
 import { getSecretData } from "./utils/server-only";
@@ -102,7 +104,51 @@ export default async function Home() {
             remain Server Components.
           </p>
         </div>
+      </section>
 
+      {/* Interleaving Section - The New Content */}
+       {/* Server in Server / Client in Client discussion */}
+      <section className="space-y-6">
+        <h2 className="text-3xl font-bold text-purple-700 dark:text-purple-500">
+          Interleaving Server & Client Components
+        </h2>
+
+        <div className="rounded-lg border border-purple-500 p-6 bg-white dark:bg-gray-800 shadow-sm">
+          <h3 className="text-xl font-bold">
+            Server-in-Server and Client-in-Client
+          </h3>
+          <p className="text-gray-700 dark:text-gray-300 mb-4">
+            These patterns are the default standard React behaviors.
+          </p>
+          <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-300">
+            <li>
+              **Server into Server:** This `app/page.js` is a Server Component
+              that implicitly renders other Server Components. This is standard
+              composition and requires no special syntax.
+            </li>
+            <li>
+              **Client into Client:** Once a client boundary is defined with
+              `"use client"`, all components imported within that tree behave
+              like traditional React, using state, effects, and context freely.
+            </li>
+          </ul>
+
+          <h3 className="text-xl font-bold my-3">
+            Server Component in a Client Component
+          </h3>
+          <p className="text-gray-700 dark:text-gray-300 mb-4">
+            The key pattern for interleaving is passing Server Components as a
+            prop (`children`) to a Client Component. The Server Component
+            (`ServerDataDisplay`) renders fully on the server, and the Client
+            Component (`InteractiveWrapper`) acts purely as an interactive
+            wrapper around the static HTML content.
+          </p>
+
+          {/* This is where the magic happens: SC passed as child to CC */}
+          <InteractiveWrapper>
+            <ServerDataDisplay />
+          </InteractiveWrapper>
+        </div>
       </section>
 
       <footer className="text-center text-sm text-gray-400 py-8">
