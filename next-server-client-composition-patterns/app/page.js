@@ -63,7 +63,7 @@ export default async function Home() {
           </h3>
           <p className="text-gray-700 dark:text-gray-300">
             Server Components cannot directly use React `Context`. Instead, a
-            client-side provider wraps the application in the `layout.tsx`, and
+            client-side provider wraps the application in the `layout.js`, and
             data needed server-side is passed down via props.
           </p>
           <p className="text-gray-700 dark:text-gray-300 mt-5">
@@ -106,48 +106,53 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Interleaving Section - The New Content */}
-       {/* Server in Server / Client in Client discussion */}
+      {/* Interleaving Server & Client Components Section */}
       <section className="space-y-6">
         <h2 className="text-3xl font-bold text-purple-700 dark:text-purple-500">
           Interleaving Server & Client Components
         </h2>
 
-        <div className="rounded-lg border border-purple-500 p-6 bg-white dark:bg-gray-800 shadow-sm">
-          <h3 className="text-xl font-bold">
-            Server-in-Server and Client-in-Client
-          </h3>
-          <p className="text-gray-700 dark:text-gray-300 mb-4">
-            These patterns are the default standard React behaviors.
-          </p>
-          <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-300">
-            <li>
-              **Server into Server:** This `app/page.js` is a Server Component
-              that implicitly renders other Server Components. This is standard
-              composition and requires no special syntax.
-            </li>
-            <li>
-              **Client into Client:** Once a client boundary is defined with
-              `"use client"`, all components imported within that tree behave
-              like traditional React, using state, effects, and context freely.
-            </li>
-          </ul>
+        <div className="rounded-lg border border-gray-300 p-6 bg-white dark:bg-gray-800 shadow-sm">
+          <div>
+            <h3 className="text-xl font-bold">
+              Server-in-Server and Client-in-Client
+            </h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              These patterns are the default standard React behaviors.
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-300">
+              <li>
+                <strong>Server into Server:</strong> This `app/page.js` is a
+                Server Component that implicitly renders other Server
+                Components. This is standard composition and requires no special
+                syntax.
+              </li>
+              <li>
+                <strong>Client into Client:</strong> Once a client boundary is
+                defined with `"use client"`, all components imported within that
+                tree behave like traditional React, using state, effects, and
+                context freely.
+              </li>
+            </ul>
+          </div>
 
-          <h3 className="text-xl font-bold my-3">
-            Server Component in a Client Component
-          </h3>
-          <p className="text-gray-700 dark:text-gray-300 mb-4">
-            The key pattern for interleaving is passing Server Components as a
-            prop (`children`) to a Client Component. The Server Component
-            (`ServerDataDisplay`) renders fully on the server, and the Client
-            Component (`InteractiveWrapper`) acts purely as an interactive
-            wrapper around the static HTML content.
-          </p>
+          <div>
+            <h3 className="text-xl font-bold my-3">
+              Server Component in a Client Component
+            </h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              The key pattern for interleaving is passing Server Components as a
+              prop (`children`) to a Client Component. The Server Component
+              (`ServerDataDisplay`) renders fully on the server, and the Client
+              Component (`InteractiveWrapper`) acts purely as an interactive
+              wrapper around the static HTML content.
+            </p>
 
-          {/* This is where the magic happens: SC passed as child to CC */}
-          <InteractiveWrapper>
-            <ServerDataDisplay />
-          </InteractiveWrapper>
+            {/* This is where the magic happens: SC passed as child to CC */}
+            <InteractiveWrapper>
+              <ServerDataDisplay />
+            </InteractiveWrapper>
+          </div>
         </div>
       </section>
 

@@ -24,6 +24,19 @@ This repository focuses on practical examples of the core architecture of the Ne
 
 *   **Passing Server Components as `children` to Client Components**: This advanced pattern demonstrates how to compose an interactive client boundary around static, pre-rendered server content. The `app/page.js` file passes the `ServerDataDisplay` (Server Component) as the `children` prop to the `InteractiveWrapper` (Client Component). The server content is fully rendered to HTML before the client component hydrates, optimizing performance while retaining interactivity in the wrapper.
 
+## 🔄 Interleaving Server & Client Components Pattern Summary
+
+The table below summarizes all possible ways of Interleaving components Pattern in Next.js, with examples from this project where applicable:
+
+
+| Parent Component | Child Component | Pattern Name      | Status | Key Mechanism/Notes                                                                                                                                  |
+|------------------|-----------------|-------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Server           | Server          | Server into Server| ✅      | This is the default. Works like standard React composition. (e.g., `app/page.js` imports other implicit server components).                         |
+| Server           | Client          | Client into Server| ✅      | Adds interactivity by creating a "client boundary." This is where React takes over and makes the component interactive. (e.g., `app/page.js` imports `<ThemeToggle />`).        |
+| Client           | Client          | Client into Client| ✅      | This works like traditional React once the "use client" boundary is crossed. (e.g., Components within the `ClientProviders.js` tree).              |
+| Client           | Server          | Server into Client| ✅      | Requires passing the Server Component as a children prop. (e.g., `<InteractiveWrapper><ServerDataDisplay /></InteractiveWrapper>`).                 |
+
+
 ##  📂 Project Structure
 
 ```text
@@ -34,6 +47,8 @@ app/
 │   ├── ClientInteractive.jsx     # Uses client-only function
 │   ├── SlickCarouselWrapper.jsx  # Wrapper for react-slick
 │   ├── ClientProviders.jsx       # Manages client-side context
+│   ├── InteractiveWrapper.jsx    # client wrapper for interleaving use
+│   ├── ServerDataDisplay.jsx     # used for interleaving demo
 │   └── ThemeToggle.jsx           # Consumes client-side context
 ├── utils/
 │   ├── client-only.js            # File with client-only functions
