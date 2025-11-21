@@ -4,6 +4,8 @@ export default function Home() {
   const concepts = [
     { title: 'Data Fetching in Server Components', description: 'Using async/await and Next.js loading.jsx/error.jsx conventions.', href: '/server-fetching' },
     { title: 'Data Fetching in Client Components', description: 'Using useState and useEffect hooks.', href: '/client-fetching' },
+    { title: 'Sequential Data Fetching', description: 'Fetching data where one request depends on the result of a previous one.', href: '/sequential-fetching' },
+    { title: 'Parallel Data Fetching', description: 'Initiating independent requests concurrently using Promise.all and React Suspense boundaries.', href: '/parallel-fetching' },
   ];
 
   return (
