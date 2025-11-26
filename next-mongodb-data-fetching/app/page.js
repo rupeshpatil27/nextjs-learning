@@ -5,7 +5,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-2xl w-full">
         <h1 className="text-4xl font-extrabold mb-4 text-gray-800">
-          Next.js Learning: Data Fetching from MongoDB
+          Next.js Learning: Full Stack Data Management
         </h1>
         <p className="mb-6 text-gray-600">
           This section of the repository focuses on integrating a MongoDB database with a Next.js application using the App Router.
@@ -16,19 +16,25 @@ export default function HomePage() {
         </h2>
         <ul className="list-disc list-inside space-y-2 mb-6 text-gray-700">
           <li>
-            **MongoDB & Mongoose**: Setting up database connections and defining schemas.
+            <strong>MongoDB & Mongoose</strong>: Setting up database connections and defining schemas.
           </li>
           <li>
-            **Server Components**: Fetching data directly within React Server Components using `async/await`.
+            <strong>Server Components</strong>: Fetching data directly within React Server Components using `async/await`.
           </li>
           <li>
-            **Environment Variables**: Securely managing MongoDB connection strings using `.env.local`.
+            <strong>Environment Variables</strong>: Securely managing MongoDB connection strings using `.env`.
           </li>
           <li>
-            **Data Serialization**: Handling MongoDB's non-JSON serializable data types (like `ObjectId` and `Date`) for use in components.
+            <strong>Server Actions (CRUD)</strong>: Implementing Create, Update, and Delete operations on the server side.
           </li>
           <li>
-            **Basic Styling**: Utilizing Tailwind CSS for a clean, responsive UI.
+            <strong><code>useFormStatus</code></strong>: Displaying pending states (loading spinners, disabled buttons) during form submission.
+          </li>
+          <li>
+            <strong><code>useActionState</code></strong>: Handling form validation feedback and success/error messages within client components.
+          </li>
+          <li>
+            <strong><code>revalidatePath</code> &amp; <code>redirect</code></strong>: Managing cache invalidation and navigation after data mutations.
           </li>
         </ul>
 
