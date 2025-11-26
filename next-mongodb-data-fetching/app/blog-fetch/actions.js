@@ -10,8 +10,10 @@ export async function createPost(formData) {
   const author = formData.get('author');
 
   if (!title || !content || !author) {
-    // In a real app, you would handle validation errors better
-    return { error: 'Missing required fields' };
+    return { 
+      success: false, 
+      error: 'Missing required fields: Title, Content, and Author are all needed.' 
+    };
   }
 
   try {
