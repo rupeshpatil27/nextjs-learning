@@ -19,6 +19,10 @@ The examples within this directory provide practical demonstrations of the follo
 - **`useFormStatus` Hook**: Providing a better user experience by showing pending states (e.g., "Saving..." button text) while a server action is running.
 - **`useActionState` Hook**: Managing and displaying validation errors or success messages returned from a server action on the client side.
 
+- **`useOptimistic` Hook**: Implementing **optimistic UI updates**. This hook allows the UI to update instantly (e.g., a post vanishing immediately after clicking "delete") before the database operation confirms success, drastically improving perceived performance.
+
+- **`Form` Component (`next/form`)**: Utilizing the specialized Next.js `<Form>` component for enhanced performance in search functionality and client-side navigation/prefetching of shared UI.
+
 ## 📁 Project Structure
 
 Here is an overview of the key files involved in this example:
@@ -27,7 +31,9 @@ Here is an overview of the key files involved in this example:
 | -------------------------- | --------------------------------------------------------------------------- |
 | `models/postModal.js`            | Defines the Mongoose schema for a blog post.                               |
 | `lib/connectDB.js`            | Utility function to establish a connection to the MongoDB instance.         |
-| `app/blog-fetch/page.jsx`   | Main blog index displaying posts and using delete actions (`PostCard`).                     |
+| `app/blog-fetch/page.jsx`   | Server Component wrapper that fetches filtered posts based on `searchParams`.                     |
+| `app/blog-fetch/BlogFetchPage.jsx`   | Main Client Component using `useOptimistic`, rendering posts, the `SearchForm`.                     |
+| `app/blog-fetch/PostCard.jsx`   | Reusable component for displaying a single post item and triggering the optimistic delete action.                     |
 | `app/blog-fetch/create/page.jsx`   | Form page for submitting new posts using `useActionState` and `useFormStatus`.                     |
 | `app/blog-fetch/[id]/edit/page.jsx`   | Server component page to fetch specific post data for editing.                     |
 | `app/blog-fetch/actions.js`   | Defines all server-side functions (createPost, updatePost, deletePost).                     |
