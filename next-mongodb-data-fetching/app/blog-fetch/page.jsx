@@ -1,11 +1,22 @@
 import Post from "@/models/postModal";
-import PostCard from "./PostCard";
 import connectDB from "@/lib/connectDB";
-import Link from "next/link";
+import BlogFetchPage from "./BlogFetchPage";
 
-async function getPosts() {
+async function getPosts(query = "") {
   await connectDB();
-  const posts = await Post.find({}).sort({ createdAt: -1 }).lean();
+
+  let filter = {};
+  if (query) {
+    filter = {
+      $or: [
+        { title: { $regex: query, $options: "i" } },
+        { content: { $regex: query, $options: "i" } },
+        { author: { $regex: query, $options: "i" } },
+      ],
+    };
+  }
+
+  const posts = await Post.find(filter).sort({ createdAt: -1 }).lean();
   // Use .lean() for faster queries when you don't need Mongoose documents
 
   // MongoDB ObjectId is not directly serializable to JSON, so convert _id to a string
@@ -19,32 +30,11 @@ async function getPosts() {
   return serializedPosts;
 }
 
-export default async function BlogFetchPage() {
-  const posts = await getPosts();
+export default async function BlogWrapperPage({ searchParams }) {
 
-  const [optimisticPost,setOptimisticPost]=useOptimistic(posts,(currentPosts,postId)=>{
-    return currentPosts.filter(post=> post._id!== postId)
-  })
+  const {q} = await searchParams;
 
-  return (
-    <div className="container mx-auto p-4">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">
-          Blog Posts (Fetched from MongoDB)
-        </h1>
-        <Link
-          href="/blog-fetch/create"
-          className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded shadow"
-        >
-          + New Post
-        </Link>
-      </div>
-      
-      <div className="space-y-4">
-        {optimisticPost.map((post) => (
-          <PostCard key={post._id} post={post} />
-        ))}
-      </div>
-    </div>
-  );
+  const posts = await getPosts(q);
+
+ return <BlogFetchPage initialPosts={posts} />;
 }

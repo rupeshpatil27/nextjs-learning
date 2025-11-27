@@ -33,6 +33,12 @@ export default function HomePage() {
           <li>
             <strong><code>useActionState</code></strong>: Handling form validation feedback and success/error messages within client components.
           </li>
+           <li>
+            <strong><code>useOptimistic</code></strong>: Implementing optimistic UI updates to instantly reflect data changes (like deletion) before the server response returns, improving perceived performance.
+          </li>
+           <li>
+            <strong>`Form` Component (`next/form`)</strong>: Leveraging the enhanced Next.js component for automatic performance benefits, especially for search functionality using `searchParams` and for server-side redirects.
+          </li>
           <li>
             <strong><code>revalidatePath</code> &amp; <code>redirect</code></strong>: Managing cache invalidation and navigation after data mutations.
           </li>

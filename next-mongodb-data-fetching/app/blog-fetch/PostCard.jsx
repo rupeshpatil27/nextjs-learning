@@ -1,9 +1,17 @@
 import Link from "next/link";
-import { deletePost } from "./actions";
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, onDelete }) => {
 
-   const deletePostWithId = deletePost.bind(null, post._id);
+   const deletePostWithId = onDelete.bind(null, post._id);
+
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        timeZone: 'UTC' 
+    });
+  };
 
   return (
     <div className="p-5 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition duration-300 bg-white">
@@ -35,7 +43,7 @@ const PostCard = ({ post }) => {
       <p className="mt-2 text-gray-600 line-clamp-2">{post.content}</p>
       <div className="mt-3 text-sm text-gray-400">
         <span>
-          By {post.author} on {new Date(post.createdAt).toLocaleDateString()}
+          By {post.author} on {formatDate(post.createdAt)} 
         </span>
       </div>
     </div>
