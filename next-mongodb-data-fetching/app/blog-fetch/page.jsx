@@ -22,6 +22,10 @@ async function getPosts() {
 export default async function BlogFetchPage() {
   const posts = await getPosts();
 
+  const [optimisticPost,setOptimisticPost]=useOptimistic(posts,(currentPosts,postId)=>{
+    return currentPosts.filter(post=> post._id!== postId)
+  })
+
   return (
     <div className="container mx-auto p-4">
       <div className="flex justify-between items-center mb-6">
@@ -37,7 +41,7 @@ export default async function BlogFetchPage() {
       </div>
       
       <div className="space-y-4">
-        {posts.map((post) => (
+        {optimisticPost.map((post) => (
           <PostCard key={post._id} post={post} />
         ))}
       </div>
