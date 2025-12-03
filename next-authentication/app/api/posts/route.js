@@ -1,5 +1,5 @@
 import connectDB from "@/lib/connectDB";
-import Post from "@/models/postModal";
+import Post from "@/models/blogModal";
 import { NextResponse } from "next/server";
 
 export async function GET() {

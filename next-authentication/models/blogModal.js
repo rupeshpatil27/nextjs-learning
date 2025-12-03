@@ -1,6 +1,6 @@
 import mongoose, { Schema, models } from "mongoose";
 
-const PostSchema = new Schema(
+const BlogSchema = new Schema(
   {
     title: {
       type: String,
@@ -10,7 +10,7 @@ const PostSchema = new Schema(
       type: String,
       required: true,
     },
-    author: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User", // Refers to the User model
       required: true,
@@ -19,6 +19,6 @@ const PostSchema = new Schema(
   { timestamps: true }
 );
 
-const Post = models.Post || mongoose.model("Post", PostSchema);
+const Post = models.Blog || mongoose.model("Blog", BlogSchema);
 
 export default Post;
