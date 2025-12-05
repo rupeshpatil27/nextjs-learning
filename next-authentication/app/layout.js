@@ -12,8 +12,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Next.js Authentication",
-  description: "Next.js Authentication",
+  title: "Auth Todo App",
+  description: "A todo list with NextAuth.js authentication",
 };
 
 export default function RootLayout({ children }) {

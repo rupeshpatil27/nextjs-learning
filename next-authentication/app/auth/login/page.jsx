@@ -75,7 +75,7 @@ export default function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               required
               className="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150"
-              placeholder="••••••••"
+              placeholder="•••"
             />
           </div>
 
