@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function PostForm({ userEmail }) {
+export default function PostForm() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -16,7 +16,7 @@ export default function PostForm({ userEmail }) {
     const response = await fetch('/api/posts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, content, author: "692f2a6fceeaa01f340ce8bb" }),
+      body: JSON.stringify({ title, content}),
     });
 
     setIsSubmitting(false);
