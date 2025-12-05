@@ -18,7 +18,7 @@ export default function TodoForm() {
     });
 
     if (response.ok) {
-      setTask(''); // Clear input
+      setTask('');
       router.refresh(); // Tell Next.js to refresh page data
     } else {
       alert('Failed to add task or not authenticated.');

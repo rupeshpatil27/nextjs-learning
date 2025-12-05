@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Auth Todo App",
-  description: "A todo list with NextAuth.js authentication",
+  description: "A todo list with authentication",
 };
 
 export default function RootLayout({ children }) {

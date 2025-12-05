@@ -27,7 +27,7 @@ export async function POST(req) {
       );
     }
 
-    cookieStore.set("userId", user.id, { httpOnly: true, maxAge: 60 * 5 });
+    cookieStore.set("userId", user.id, { httpOnly: true, maxAge: 60 * 60 });
 
     return NextResponse.json(user, { status: 201 });
   } catch (error) {

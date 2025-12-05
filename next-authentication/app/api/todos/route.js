@@ -8,8 +8,6 @@ export async function GET() {
   const cookieStore = await cookies();
   const userId = cookieStore.get('userId')?.value;
 
-  console.log(userId)
-
   if (!userId) {
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
   }
@@ -20,6 +18,7 @@ export async function GET() {
 
 export async function POST(request) {
   await connectDB();
+    const cookieStore = await cookies();
   const userId = cookieStore.get('userId')?.value;
 
   if (!userId) {
