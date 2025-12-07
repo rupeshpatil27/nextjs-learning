@@ -1,28 +1,26 @@
-const { default: User } = require("@/models/userModel");
-const { cookies } = require("next/headers");
-const { NextResponse } = require("next/server");
+import User from "@/models/userModel";
+import { cookies } from "next/headers";
 
 export async function getLoggedInUser() {
   const cookieStore = await cookies();
   const userId = cookieStore.get("userId")?.value;
 
-  if (!userId)
-    return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+  if (!userId) {
+    throw new Error("Not authenticated", { cause: 401 });
+  }
 
   try {
-    const user = await User.findById({ userId });
-
+    const user = await User.findById(userId);
     if (!user) {
-      return NextResponse.json(
-        { message: "User not exists." },
-        { status: 401 }
-      );
+      throw new Error("User not found", { cause: 401 });
     }
+
     return user;
   } catch (error) {
-    return NextResponse.json(
-      { message: error.message || "Something wewnt wrong!" },
-      { status: 500 }
-    );
+    if (error.name === "CastError") {
+      throw new Error("Invalid User ID format", { cause: 400 });
+    }
+    if (error.cause) throw error;
+    throw new Error("Database error during user fetch", { cause: 500 });
   }
 }
