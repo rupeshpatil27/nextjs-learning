@@ -2,6 +2,7 @@ import connectDB from "@/lib/connectDB";
 import User from "@/models/userModel";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import { signCookie } from "@/lib/auth";
 
 export async function POST(req) {
   await connectDB();
@@ -27,7 +28,7 @@ export async function POST(req) {
       );
     }
 
-    cookieStore.set("userId", user.id, { httpOnly: true, maxAge: 60 * 60 });
+    cookieStore.set("userId", signCookie(user.id), { httpOnly: true, maxAge: 60 * 60 });
 
     return NextResponse.json(user, { status: 201 });
   } catch (error) {
