@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 
 export async function getLoggedInUser() {
   const cookieStore = await cookies();
-  const cookie = cookieStore.get("userId")?.value;
+  const cookie = cookieStore.get("sid")?.value;
 
   if (!cookie) {
     throw new Error("Not authenticated", { cause: 401 });
@@ -59,10 +59,8 @@ export function verifyCookie(signedcookie) {
   return false;
 }
 
-
-export async function getSessionOnServer() {
+export async function getUserSessionId() {
   const cookieStore = await cookies();
-  const userId = cookieStore.get("userId")?.value;
-  if (!userId) return null;
-  return userId;
+  const cookie = cookieStore.get("sid")?.value;
+  return verifyCookie(cookie);
 }

@@ -1,8 +1,8 @@
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import Todo from "@/models/todoModel";
 import connectDB from "@/lib/connectDB";
 import { getLoggedInUser } from "@/lib/auth";
+import { revalidatePath } from "next/cache";
 
 // DELETE handler
 export async function DELETE(request, { params }) {
@@ -20,6 +20,9 @@ export async function DELETE(request, { params }) {
         { status: 404 }
       );
     }
+
+    revalidatePath("/api/todos");
+
     return NextResponse.json({ success: true, message: "Todo deleted" });
   } catch (error) {
     return NextResponse.json({ error: "Error deleting todo" }, { status: 500 });
@@ -67,6 +70,9 @@ export async function PUT(request, { params }) {
         { status: 404 }
       );
     }
+
+    revalidatePath("/api/todos");
+
     return NextResponse.json(updatedTodo);
   } catch (error) {
     return NextResponse.json({ error: "Error updating todo" }, { status: 500 });
