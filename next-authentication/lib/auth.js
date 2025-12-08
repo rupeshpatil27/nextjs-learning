@@ -1,3 +1,4 @@
+import Session from "@/models/sessionModel";
 import User from "@/models/userModel";
 import { createHmac } from "crypto";
 import { cookies } from "next/headers";
@@ -10,14 +11,20 @@ export async function getLoggedInUser() {
     throw new Error("Not authenticated", { cause: 401 });
   }
 
-  const userId = verifyCookie(cookie);
+  const sessionId = verifyCookie(cookie);
 
-  if (!userId) {
+  if (!sessionId) {
     throw new Error("Not Verified", { cause: 401 });
   }
 
   try {
-    const user = await User.findById(userId);
+    const session = await Session.findById(sessionId);
+    if (!session) {
+      throw new Error("session expired", { cause: 401 });
+    }
+
+    const user = await User.findById(session.userId);
+
     if (!user) {
       throw new Error("User not found", { cause: 401 });
     }

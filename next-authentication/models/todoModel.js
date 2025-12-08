@@ -3,7 +3,11 @@ import { Schema } from "mongoose";
 
 const TodoSchema = new Schema(
   {
-    userId: { type: String, required: true },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User", // Refers to the User model
+      required: true,
+    },
     task: { type: String, required: true },
     completed: { type: Boolean, default: false },
   },

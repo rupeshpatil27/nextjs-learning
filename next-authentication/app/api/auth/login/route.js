@@ -3,6 +3,7 @@ import User from "@/models/userModel";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { signCookie } from "@/lib/auth";
+import Session from "@/models/sessionModel";
 
 export async function POST(req) {
   await connectDB();
@@ -28,7 +29,12 @@ export async function POST(req) {
       );
     }
 
-    cookieStore.set("userId", signCookie(user.id), { httpOnly: true, maxAge: 60 * 60 });
+    const session = await Session.create({ userId: user._id });
+
+    cookieStore.set("userId", signCookie(session.id), {
+      httpOnly: true,
+      maxAge: 60 * 60,
+    });
 
     return NextResponse.json(user, { status: 201 });
   } catch (error) {
