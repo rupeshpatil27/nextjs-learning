@@ -1,40 +1,58 @@
-import LogoutButton from "@/components/LogoutButton";
+"use client";
+
 import TodoForm from "@/components/TodoForm";
 import TodoList from "@/components/TodoList";
-import { cookies } from "next/headers";
+import UserProfileDropdown from "@/components/UserProfileDropdown";
+import { getSessionOnServer } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import { useEffect, useState } from "react";
 
-async function getSessionOnServer() {
-  const cookieStore = await cookies();
-  const userId = cookieStore.get("userId")?.value;
-  if (!userId) return null;
-  return userId;
-}
+export default function Home() {
+  const [user, setUser] = useState();
+  const [todo, setTodos] = useState([]);
 
-export default async function Home() {
-  const cookieStore = await cookies();
-  const session = await getSessionOnServer();
-  if (!session) {
-    redirect("/auth/login");
-  }
-
-  let initialTodos = [];
-
-  try {
-    const response = await fetch("http://localhost:3000/api/todos/", {
-      cache: "no-store",
-      headers: { Cookie: cookieStore.toString() },
-    });
-
-    if (!response.ok) {
-      const errorData = await response.text();
-      throw new Error(errorData);
+  useEffect(async () => {
+    const session = await getSessionOnServer();
+    if (!session) {
+      redirect("/auth/login");
     }
 
-    initialTodos = await response.json();
-  } catch (error) {
-    console.log(error.message);
-  }
+    fetchTodos();
+  }, []);
+
+  const fetchUser = async () => {
+    try {
+      const response = await fetch("/api/user/");
+
+      if (!response.ok) {
+        const errorData = await response.text();
+        throw new Error(errorData);
+      }
+
+      data = await response.json();
+
+      setUser(data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  
+  const fetchTodos = async () => {
+    try {
+      const response = await fetch("/api/todos/");
+
+      if (!response.ok) {
+        const errorData = await response.text();
+        throw new Error(errorData);
+      }
+
+      data = await response.json();
+
+      setTodos(data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <div className="min-h-screen p-4 md:p-8">
@@ -45,7 +63,9 @@ export default async function Home() {
             <span className="text-gray-600 text-sm hidden sm:inline">
               Hello,!
             </span>
-            <LogoutButton />
+            <UserProfileDropdown
+              user={user}
+            />
           </div>
         </header>
 

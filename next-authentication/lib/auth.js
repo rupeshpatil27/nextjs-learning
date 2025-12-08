@@ -58,3 +58,11 @@ export function verifyCookie(signedcookie) {
 
   return false;
 }
+
+
+export async function getSessionOnServer() {
+  const cookieStore = await cookies();
+  const userId = cookieStore.get("userId")?.value;
+  if (!userId) return null;
+  return userId;
+}
