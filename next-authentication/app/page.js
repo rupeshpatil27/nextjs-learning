@@ -3,56 +3,55 @@
 import TodoForm from "@/components/TodoForm";
 import TodoList from "@/components/TodoList";
 import UserProfileDropdown from "@/components/UserProfileDropdown";
-import { getSessionOnServer } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [user, setUser] = useState();
-  const [todo, setTodos] = useState([]);
+  const [user, setUser] = useState(null);
+  const [todos, setTodos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(async () => {
-    const session = await getSessionOnServer();
-    if (!session) {
-      redirect("/auth/login");
-    }
-
-    fetchTodos();
+  useEffect(() => {
+    const initializeData = async () => {
+        await fetchTodos();
+        await fetchUser();
+        setIsLoading(false);
+    };
+    initializeData();
   }, []);
 
   const fetchUser = async () => {
     try {
       const response = await fetch("/api/user/");
+      const data = await response.json();
 
       if (!response.ok) {
-        const errorData = await response.text();
-        throw new Error(errorData);
+        throw new Error(JSON.stringify(data));
       }
-
-      data = await response.json();
-
       setUser(data);
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
+      redirect("/auth/login");
     }
   };
-  
+
   const fetchTodos = async () => {
     try {
       const response = await fetch("/api/todos/");
+      const data = await response.json();
 
       if (!response.ok) {
-        const errorData = await response.text();
-        throw new Error(errorData);
+        throw new Error(JSON.stringify(data));
       }
-
-      data = await response.json();
-
       setTodos(data);
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
     }
   };
+
+  if (isLoading && !user) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  }
 
   return (
     <div className="min-h-screen p-4 md:p-8">
@@ -63,17 +62,13 @@ export default function Home() {
             <span className="text-gray-600 text-sm hidden sm:inline">
               Hello,!
             </span>
-            <UserProfileDropdown
-              user={user}
-            />
+            <UserProfileDropdown user={user} />
           </div>
         </header>
 
         <main className="bg-white p-6 md:p-8 rounded-2xl shadow-xl">
           <TodoForm />
-          <TodoList
-            initialTodos={Array.isArray(initialTodos) ? initialTodos : []}
-          />
+          <TodoList initialTodos={Array.isArray(todos) ? todos : []} />
         </main>
       </div>
     </div>
