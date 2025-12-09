@@ -8,7 +8,10 @@ export async function GET() {
 
     const user = await getLoggedInUser();
 
-    return NextResponse.json(user, { status: 200 });
+    return NextResponse.json(
+      { name: user.name, email: user.email },
+      { status: 200 }
+    );
   } catch (error) {
     const status = error.cause || 500;
     const message = error.message || "Something went wrong!";
@@ -16,4 +19,3 @@ export async function GET() {
     return NextResponse.json({ message: message }, { status: status });
   }
 }
-

@@ -5,6 +5,8 @@ import { NextResponse } from "next/server";
 import { signCookie } from "@/lib/auth";
 import Session from "@/models/sessionModel";
 
+import bcrypt from "bcrypt";
+
 export async function POST(req) {
   await connectDB();
 
@@ -29,6 +31,15 @@ export async function POST(req) {
       );
     }
 
+    const matchPassword = await bcrypt.compare(password, user.password);
+
+    if (!matchPassword) {
+      return NextResponse.json(
+        { message: "Invalid Credentials!" },
+        { status: 400 }
+      );
+    }
+
     const session = await Session.create({ userId: user._id });
 
     cookieStore.set("sid", signCookie(session.id), {
@@ -36,7 +47,10 @@ export async function POST(req) {
       maxAge: 60 * 60,
     });
 
-    return NextResponse.json(user, { status: 201 });
+    return NextResponse.json(
+      { name: user.name, email: user.email },
+      { status: 201 }
+    );
   } catch (error) {
     return NextResponse.json(
       { message: error.message || "Something wewnt wrong!" },
