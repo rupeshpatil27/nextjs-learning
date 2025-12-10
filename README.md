@@ -21,6 +21,7 @@ The repository is organized into several self-explanatory project folders:
 | [`next-server-client-composition-patterns`](./next-server-client-composition-patterns) | Demonstrations of composition patterns and managing the Server/Client code boundaries effectively.                                    |
 | [`next-data-fetching`](./next-data-fetching)                                           | Detailed examples of all major Next.js data fetching strategies (Server, Client, Parallel, Sequential).                               |
 | [`next-mongodb-data-fetching`](./next-mongodb-data-fetching)                                           | Integrating MongoDB with Next.js Server Actions for full-stack CRUD operations and optimistic UI updates.                               |
+| [`next-authentication`](./next-authentication)                                           | Examples of user authentication (login/registration) with MongoDB and session management.                               |
 
 # ✅ Concepts Covered
 
@@ -150,6 +151,16 @@ This project demonstrates full-stack integration of Next.js with a MongoDB datab
 -   **`useActionState` Hook**: Managing and displaying validation errors or success messages returned from Server Actions on the client side.
 -   **`useOptimistic` Hook**: Implementing optimistic UI updates where the UI instantly reflects the expected final state before the server confirms the database change, greatly improving perceived performance.
 -   **`Form` Component (`next/form`)**: Utilizing the specialized Next.js `<Form>` component for enhanced performance in search functionality and client-side navigation/prefetching of shared UI.
+
+## 🔐 [Authentication](./next-authentication)
+
+This project focuses on building a secure, full-stack application. It covers how to set up user authentication and protect data:
+
+*   **User Registration & Login**: Implementing secure user sign-up and sign-in flows.
+*   **Password Hashing**: Storing passwords securely using hashing libraries (e.g., `bcrypt`).
+*   **Session Management**: Utilizing server-side logic and signed cookies to manage user sessions.
+*   **Protected Routes & APIs**: Implementing middleware or server-side checks to restrict access to authenticated users only.
+*   **Full-Stack CRUD**: Demonstrating Create, Read, Update, and Delete operations using MongoDB within an authenticated context.
 
 ## 🚀 Getting Started
 
